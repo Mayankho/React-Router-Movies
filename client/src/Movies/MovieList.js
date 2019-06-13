@@ -22,9 +22,6 @@ export default class MovieList extends Component {
       });
   }
 
-  // So  the div classname is rendering the movies
-  // It wouldn't make sense to put the link inside the same classname it seems 
-  // So best option is to put it inside of the movie details fuctions
 
   render() {
     return (

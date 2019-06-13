@@ -11,8 +11,13 @@ export default class Movie extends Component {
   }
 
   componentDidMount() {
-    // change this line to grab the id passed on the URL
     this.fetchMovie(this.props.match.params.id)
+  }
+
+  componentWillReceiveProps(newProps){
+    if(this.props.match.params.id !== newProps.match.params.id){
+      this.fetchMovie(newProps.match.params.id);
+    }
   }
 
   fetchMovie = id => {
@@ -27,11 +32,6 @@ export default class Movie extends Component {
       });
   };
 
-  componentWillReceiveProps(newProps){
-    if(this.props.match.params.id !== newProps.match.params.id){
-      this.fetchMovie(newProps.match.params.id);
-    }
-  }
 
   saveMovie = () => {
     const addToSavedList = this.props.addToSavedList;
@@ -47,7 +47,7 @@ export default class Movie extends Component {
     return (
       <div className="save-wrapper">
         <MovieCard movie = {this.state.movie}  />
-        <div className="save-button" onCick= {this.saveMovie}>Save</div>
+        <div className="save-button" onClick= {this.saveMovie}>Save</div>
       </div>
     );
   }
